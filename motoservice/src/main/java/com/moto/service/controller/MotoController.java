@@ -2,7 +2,7 @@ package com.moto.service.controller;
 
 import java.util.List;
 
-import com.moto.service.entidades.Moto;
+import com.moto.service.entidad.Moto;
 import com.moto.service.service.MotoService;
 
 import org.springframework.beans.factory.annotation.Autowired;

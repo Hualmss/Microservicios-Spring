@@ -2,8 +2,10 @@ package com.usuario.service.controller;
 
 import java.util.List;
 
-
+import com.usuario.service.Models.Carro;
+import com.usuario.service.Models.Moto;
 import com.usuario.service.entity.Usuario;
+
 import com.usuario.service.servicio.UsuarioService;
 
 
@@ -48,5 +50,31 @@ public class UsuarioController {
 		Usuario nuevoUsuario = usuarioService.save(usuario);
 		return ResponseEntity.ok(nuevoUsuario);
 	}
+
+
+	@GetMapping("/carros/{usuarioId}")
+	public ResponseEntity<List<Carro>>getCarros(@PathVariable("usuarioId")int id){
+		Usuario usuario = usuarioService.getUsuarioById(id);
+		if(usuario == null){
+			return ResponseEntity.notFound().build();
+
+		}
+
+		List<Carro>carros = usuarioService.getCarros(id);
+		return ResponseEntity.ok(carros);
+	}
+
+	@GetMapping("/motos/{usuarioId}")
+	public ResponseEntity<List<Moto>>getMotos(@PathVariable("usuarioId")int id){
+		Usuario usuario = usuarioService.getUsuarioById(id);
+		if(usuario == null){
+			return ResponseEntity.notFound().build();
+
+		}
+
+		List<Moto>motos = usuarioService.getMotos(id);
+		return ResponseEntity.ok(motos);
+	}
+
 }
 //26.02

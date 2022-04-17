@@ -1,13 +1,13 @@
-package com.carro.service.carroserivice;
+package com.moto.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CarroseriviceApplication {
+public class MotoserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CarroseriviceApplication.class, args);
+		SpringApplication.run(MotoserviceApplication.class, args);
 	}
 
 }

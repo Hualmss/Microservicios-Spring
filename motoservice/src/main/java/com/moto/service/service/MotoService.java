@@ -2,7 +2,7 @@ package com.moto.service.service;
 
 import java.util.List;
 
-import com.moto.service.entidades.Moto;
+import com.moto.service.entidad.Moto;
 import com.moto.service.repository.MotoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class MotoService {
 	}
 
     public List<Moto> byUsuarioId(int usuarioId){/* buscar motos por id */
-        return motoRepository.findByUduarioId(usuarioId);
+        return motoRepository.findByUsuarioId(usuarioId);
     }
 
     
