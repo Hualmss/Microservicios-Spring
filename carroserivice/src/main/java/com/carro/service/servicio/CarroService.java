@@ -30,6 +30,6 @@ public class CarroService {
 	}
 
     public List<Carro> byUsuarioId(int usuarioId){/* buscar carros por id */
-        return carroRepository.findByUduario(usuarioId);
+        return carroRepository.findByUduarioId(usuarioId);
     }
 }

@@ -9,5 +9,5 @@ import com.carro.service.entidad.Carro;
 
 @Repository
 public interface CarroRepository extends JpaRepository<Carro, Integer>{
-    List<Carro>findByUduario(int usuarioID);
+    List<Carro>findByUduarioId(int usuarioID);
 }

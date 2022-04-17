@@ -21,7 +21,7 @@ public class Carro {
 
     private String modelo;
 
-    private int usuario;
+    private int usuarioId;
 
     public int getId() {
         return id;
@@ -47,12 +47,12 @@ public class Carro {
         this.modelo = modelo;
     }
 
-    public int getUsuario() {
-        return usuario;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
     
 
