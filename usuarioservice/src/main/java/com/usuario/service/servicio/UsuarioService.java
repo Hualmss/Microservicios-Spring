@@ -1,10 +1,14 @@
 package com.usuario.service.servicio;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.usuario.service.Models.Carro;
 import com.usuario.service.Models.Moto;
 import com.usuario.service.entity.Usuario;
+import com.usuario.service.feignClient.CarroFeignClient;
+import com.usuario.service.feignClient.MotoFeignClient;
 import com.usuario.service.repositorio.UsuarioRepositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +19,19 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UsuarioService {
 
-
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 	/* Ahora inyectamos lo que se ha guardadao en el IOC container */
-
+	/* Esto es con Rest Template */
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private CarroFeignClient carroFeignClient;
+
+	@Autowired
+	private MotoFeignClient motoFeignClient;
 
 	public List<Carro> getCarros (int usuarioId){
 		List<Carro> carros = restTemplate.getForObject("http://localhost:8002/carro/usuario/"+usuarioId, List.class);
@@ -34,6 +46,21 @@ public class UsuarioService {
 
 	}
 
+	/* Esto es con FeignClient */
+
+	public Carro saveCarro(int usuarioId, Carro carro){
+		carro.setUsuarioId(usuarioId);
+		Carro nuevoCarro = carroFeignClient.save(carro);
+		return nuevoCarro;
+
+	}
+
+	public List<Carro> getCarros(){
+		return null;
+	}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
     @Autowired
 	private UsuarioRepositorio usuarioRepository;
@@ -51,4 +78,38 @@ public class UsuarioService {
 		return nuevoUsuario;
 	}
 
+	public Moto saveMoto (int usuarioId, Moto moto){
+		moto.setUsuarioId(usuarioId);
+		Moto nuevaMoto = motoFeignClient.save(moto);
+		return nuevaMoto;
+	}
+
+	public Map<String , Object>getUsuarioAndVehiculos(int usuarioId){/*  */
+		Map<String, Object>resultado = new HashMap<>();
+		Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
+
+		if(usuario == null){
+			resultado.put("mensaje", "El usuariono existe");
+			return resultado;
+		}
+		resultado.put("Usuario", usuario);;
+		List <Carro> carros = carroFeignClient.getCarros(usuarioId);
+		if (carros.isEmpty()){
+			resultado.put("Carrros", "El usuario no tiene carros");
+
+		}else{
+			resultado.put("Carros", carros);
+		}
+
+		List <Moto>motos = motoFeignClient.getMotos(usuarioId);
+
+		if(motos.isEmpty()){
+			resultado.put("Motos", "El usuario no tiene motos");
+
+		}else{
+			resultado.put("Motos", motos);
+		}
+		return resultado;
+		
+	}
 } 

@@ -4,11 +4,20 @@ public class Carro {
     
     private String marca;
     private String modelo;
+    private int usuarioId;
+
+    
 
     public Carro() {
         super();
     }
+    public int getUsuarioId() {
+        return usuarioId;
+    }
 
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
     public String getMarca() {
         return marca;
     }
