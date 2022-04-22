@@ -1,0 +1,4 @@
+Este servicio se encargará de traer la configuracion de git para los demas servicios
+
+Se indica el puerto
+sprig cloud service permite centralizar la configuracion de los microservicios
