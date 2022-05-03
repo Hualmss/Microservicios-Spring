@@ -2,3 +2,6 @@ Este servicio se encargará de traer la configuracion de git para los demas serv
 
 Se indica el puerto
 sprig cloud service permite centralizar la configuracion de los microservicios
+
+se tiene que añadir la dependecia de config service al qu administra las configuraciones
+a los clientes se les añade el config client
