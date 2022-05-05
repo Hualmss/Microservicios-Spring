@@ -1,13 +1,12 @@
 server:
-    port: 8081
+  port: 8081
 spring:
-    cloud:
-        config:
-            server:
-                git:
-                    default-label: eureka
-                    uri: https://github.com/Hualmss/Microservicios-Spring
-                    search-paths: config-data
-    application:
-        name: configservice
-
+  cloud: 
+    config:
+      server:
+        git:
+          default-label: eureka
+          uri: https://github.com/Hualmss/Microservicios-Spring
+          search-paths: config-data
+  application:
+    name: configserver
